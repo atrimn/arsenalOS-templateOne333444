@@ -1,0 +1,16 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+button:focus {
+  outline: none;
+}
+
+.scrollview::-webkit-scrollbar {
+  width: 0 !important;
+}
+.scrollview {
+  overflow: -moz-scrollbars-none;
+}
