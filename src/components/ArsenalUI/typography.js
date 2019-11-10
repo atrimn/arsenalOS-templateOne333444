@@ -14,6 +14,7 @@ export default ({
   spacing,
   children,
   textStyles,
+  titleColor,
   lg,
 }) => {
   if (!children) {
@@ -50,7 +51,7 @@ export default ({
   if (button) {
     return (
       <h2
-        style={{ ...textStyles }}
+        style={{ ...textStyles, color: titleColor }}
         className={`text-white leading-none font-light ${
           lg ? "text-lg" : "text-base"
         }`}

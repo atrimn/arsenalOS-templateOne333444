@@ -1,8 +1,19 @@
 import React from "react"
 import Typography from "./typography"
 import { FaChevronRight } from "react-icons/fa"
+import googleIcon from "../../images/googleauth.svg"
 
-export default ({ title, titleColor, gradient, lg, icon }) => {
+export default ({
+  title,
+  titleColor,
+  gradient,
+  googleAuth,
+  lg,
+  icon,
+  paddingY,
+  fullWidth,
+  titleStyle,
+}) => {
   let color
 
   if (!title) {
@@ -19,9 +30,26 @@ export default ({ title, titleColor, gradient, lg, icon }) => {
   return (
     <button
       style={{ ...color, color: titleColor }}
-      className="bg-gray-200 flex items-center outline-none rounded-full px-4 py-2"
+      className={`bg-gray-200 ${
+        googleAuth ? "mt-20" : ""
+      } py-${paddingY} flex items-center outline-none  ${
+        fullWidth ? "w-full  justify-center relative" : ""
+      } rounded-full px-4 py-2`}
     >
-      <Typography lg={lg} button>
+      {googleAuth ? (
+        <img
+          style={{ left: 20 }}
+          className=" absolute left-0 h-6 mr-8"
+          src={googleIcon}
+          alt="google"
+        />
+      ) : null}
+      <Typography
+        textStyles={titleStyle}
+        titleColor={titleColor}
+        lg={lg}
+        button
+      >
         {" "}
         {title || "title"}
       </Typography>

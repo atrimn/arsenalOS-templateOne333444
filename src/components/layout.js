@@ -12,7 +12,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "../styles/tailwind.css"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -25,12 +25,17 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <div className="bg-black h-auto">
-        <Header></Header>
+      <div
+        style={{ background: location === "/login" ? "#030303" : "" }}
+        className={`bg-black h-auto`}
+      >
+        {location !== "/login" ? <Header></Header> : null}
         <main>{children}</main>
-        <footer>
-          <h2 style={{}}>test</h2>
-        </footer>
+        {location === "/login" ? null : (
+          <footer>
+            <h2 style={{}}>test</h2>
+          </footer>
+        )}
       </div>
     </>
   )
