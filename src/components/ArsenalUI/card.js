@@ -2,8 +2,12 @@ import React from "react"
 
 //clean this up and document it
 
-const CardImage = () => {
-  return <img className="h-32  w-full" src={require("../../images/img1.png")} />
+const CardImage = ({ horizontal }) => {
+  console.log(horizontal)
+  const imgWidth = horizontal ? "w-24 rounded-lg h-28" : " h-32 w-full"
+  return (
+    <img className={`${imgWidth}`} src={require("../../images/img1.png")} />
+  )
 }
 
 export default ({
@@ -15,19 +19,23 @@ export default ({
   fullWidth,
   height,
   displayFlex,
-  padding,
+  paddingX,
+  paddingY,
   justify,
   bgImage,
   horizontal,
+  align,
 }) => {
   const gutterRight = gutter ? (horizontal ? "my-2" : "mr-4") : null
   const width = fullWidth ? "w-full" : "w-10/12"
   const maxWidth = fullWidth ? "" : "max-w-xs"
   const cardHeight = height ? `h-${height}` : "h-full"
   const display = displayFlex ? "flex" : "block"
-  const paddingPx = padding ? `p-${padding}` : ""
+  const paddingPx = paddingX ? `px-${paddingX}` : ""
+  const paddingPY = paddingY ? `py-${paddingY}` : ""
 
   let justifyDir
+  let alignDir
   // let image
 
   // turn this into helper function
@@ -46,6 +54,20 @@ export default ({
       break
     default:
       justifyDir = ""
+      break
+  }
+  switch (align) {
+    case "left":
+      alignDir = "items-start"
+      break
+    case "right":
+      alignDir = "items-end"
+      break
+    case "center":
+      alignDir = "items-center"
+      break
+    default:
+      alignDir = ""
       break
   }
 
@@ -68,9 +90,9 @@ export default ({
         background: color,
         ...gradientColor,
       }}
-      className={`relative ${gutterRight} ${justifyDir} ${paddingPx} ${display} ${cardHeight} overflow-hidden bg-white ${maxWidth} pb-2   ${width} rounded-lg`}
+      className={`relative ${paddingPY} ${alignDir} ${gutterRight} ${justifyDir} ${paddingPx} ${display} ${cardHeight} overflow-hidden bg-white ${maxWidth}    ${width} rounded-lg`}
     >
-      {cardImage ? <CardImage /> : null}
+      {cardImage ? <CardImage horizontal={horizontal} /> : null}
       {bgImage ? (
         <img
           className=" absolute object-cover object-top h-full w-full top-0 left-0 right-0  z-1"

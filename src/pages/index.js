@@ -11,8 +11,11 @@ import {
   BarItem,
   ScrollView,
   Card,
+  Separator,
 } from "../components/ArsenalUI"
 import { MdMoreVert } from "react-icons/md"
+import bgImage from "../images/city.svg"
+//  flexbar at the bottom because border-sizing seems to not be working
 
 const IndexPage = () => (
   <Layout>
@@ -22,12 +25,12 @@ const IndexPage = () => (
         <h2>Placeholder</h2>
       </div>
     </section>
-    <section id="featured" className="px-2">
-      <Flexbar padderX padderY spaceBetween>
+    <section id="featured" className="px-4">
+      <Flexbar marginTop padderX padderY spaceBetween>
         <Typography heading>Featured</Typography>
         <Button icon="chevron" gradient title="see all"></Button>
       </Flexbar>
-      <ScrollView horizontal>
+      <ScrollView marginY horizontal>
         <Card color="#333" gutter cardImage></Card>
         <Card color="#333" cardImage>
           <Flexbar padderY padderX>
@@ -44,7 +47,7 @@ const IndexPage = () => (
                 style={{
                   position: "absolute",
                   top: 0,
-                  right: -20,
+                  right: -18,
                   color: "white",
                   opacity: 0.25,
                 }}
@@ -55,7 +58,52 @@ const IndexPage = () => (
         </Card>
       </ScrollView>
     </section>
-    <section id="places"></section>
+    <section id="places" className="px-4 h-auto">
+      <Separator />
+      <Flexbar marginY padderX padderY spaceBetween>
+        <Typography heading>Places to visit</Typography>
+      </Flexbar>
+      <Card
+        bgImage={bgImage}
+        displayFlex
+        gradient
+        fullWidth
+        height="64"
+        paddingX="4"
+      >
+        <BarItem justify="center" grow>
+          <Typography cardHeading>Charco Azul</Typography>
+          <Typography cardBody>
+            Morbi urna elit, porta vitae convallis non, bibendum nec diam.
+          </Typography>
+        </BarItem>
+      </Card>
+      <ScrollView vertical marginY>
+        <Card
+          color="#333"
+          horizontal
+          gutter
+          cardImage
+          paddingX="4"
+          paddingY="4"
+          displayFlex
+          fullWidth
+          // align="center"
+          height="28"
+        >
+          <div>
+            <h2>hello</h2>
+          </div>
+        </Card>
+        <Card color="#333" horizontal gutter fullWidth height="20"></Card>
+        <Card color="#333" horizontal gutter fullWidth height="20"></Card>
+        <Card color="#333" horizontal gutter fullWidth height="20"></Card>
+        <Card color="#333" horizontal gutter fullWidth height="20"></Card>
+        <Card color="#333" horizontal gutter fullWidth height="20"></Card>
+        <Card color="#333" horizontal gutter fullWidth height="20"></Card>
+      </ScrollView>
+      {/* <Flexbar row></Flexbar>  */}
+    </section>
   </Layout>
 )
 

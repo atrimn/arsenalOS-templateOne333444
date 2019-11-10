@@ -8,6 +8,10 @@ button:focus {
   outline: none;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .scrollview::-webkit-scrollbar {
   width: 0 !important;
 }

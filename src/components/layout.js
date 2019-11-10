@@ -25,9 +25,12 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <div className="bg-black h-screen">
+      <div className="bg-black h-auto">
         <Header></Header>
         <main>{children}</main>
+        <footer>
+          <h2 style={{ color: "white" }}>test</h2>
+        </footer>
       </div>
     </>
   )
