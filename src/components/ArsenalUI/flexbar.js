@@ -24,13 +24,24 @@ export default ({
 }
 
 // either replace this with CardItem or create different component
-export const BarItem = ({ children, row, col, flexEnd, justify, grow }) => {
+export const BarItem = ({
+  children,
+  row,
+  col,
+  spaceBetween,
+  flexEnd,
+  align,
+  justify,
+  grow,
+}) => {
   const display = row || col ? "flex flex-1" : "block"
   const flexDir = row ? "" : "flex-col"
   // depracate this
   const justifyDepracated = flexEnd ? "justify-end" : ""
   const flexGrow = grow ? "flex-grow" : ""
+  const justifyBetween = spaceBetween ? "justify-between" : ""
   let justifyDir
+  let alignDir
 
   switch (justify) {
     case "left":
@@ -49,9 +60,17 @@ export const BarItem = ({ children, row, col, flexEnd, justify, grow }) => {
       justifyDir = ""
       break
   }
+  switch (align) {
+    case "center":
+      alignDir = "items-center"
+      break
+    default:
+      alignDir = ""
+      break
+  }
   return (
     <div
-      className={`relative ${display} ${flexGrow} ${flexDir} ${justifyDepracated} ${justifyDir}`}
+      className={`relative ${display} ${flexGrow} ${justifyBetween} ${alignDir} ${flexDir} ${justifyDepracated} ${justifyDir}`}
     >
       {children}
     </div>

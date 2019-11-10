@@ -15,7 +15,10 @@ export default ({
     : " overflow-x-auto overflow-y-hidden"
   return (
     <div
-      style={{ scrollSnapType: "x mandatory", ...contentContainerStyle }}
+      style={{
+        scrollSnapType: vertical ? "y mandatory" : "x mandatory",
+        ...contentContainerStyle,
+      }}
       className={`scrollview ${marginVertical} ${direction} bg-transparent w-auto h-64 ${scrollDirection}  py-2  scrolling-touch`}
     >
       {children}

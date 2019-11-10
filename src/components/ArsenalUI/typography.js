@@ -5,10 +5,13 @@ export default ({
   subheading,
   cardHeading,
   cardTitle,
+  opacity,
   cardSubHeading,
+  textDecor,
   cardBody,
   body,
   button,
+  spacing,
   children,
   textStyles,
   lg,
@@ -77,20 +80,23 @@ export default ({
     )
   }
   if (cardSubHeading) {
+    let opacityVal = opacity ? `${opacity}` : "opacity-50"
+    let spacingVal = spacing ? "tracking-widest" : ""
     return (
       <h3
         style={{ ...textStyles }}
-        className={`text-white leading-snug  font-light opacity-50 text-xs`}
+        className={`text-white ${textDecor} ${spacingVal} ${opacityVal} leading-snug pr-2  font-light  text-xs`}
       >
         {children}
       </h3>
     )
   }
   if (cardBody) {
+    let opacityVal = opacity === "1" ? "opacity-100" : "opacity-50"
     return (
       <h3
         style={{ ...textStyles }}
-        className={`text-white leading-relaxed tracking-widest opacity-75  font-light opacity-50 text-xs`}
+        className={`text-white leading-relaxed tracking-widest font-light ${opacityVal} text-xs`}
       >
         {children}
       </h3>

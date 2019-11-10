@@ -11,9 +11,11 @@ import {
   BarItem,
   ScrollView,
   Card,
+  CardBody,
   Separator,
 } from "../components/ArsenalUI"
-import { MdMoreVert } from "react-icons/md"
+import { MdMoreVert, MdLocationOn, MdModeComment } from "react-icons/md"
+import { FaRegHeart } from "react-icons/fa"
 import bgImage from "../images/city.svg"
 //  flexbar at the bottom because border-sizing seems to not be working
 
@@ -31,7 +33,30 @@ const IndexPage = () => (
         <Button icon="chevron" gradient title="see all"></Button>
       </Flexbar>
       <ScrollView marginY horizontal>
-        <Card color="#333" gutter cardImage></Card>
+        <Card gutter color="#333" cardImage>
+          <Flexbar padderY padderX>
+            <BarItem col>
+              <Typography cardTitle>It's Lit 🔥</Typography>
+              <Typography cardSubHeading>
+                Hello world
+                <span className="rounded h-2 w-2 ml-2 mr-2 bg-gray-200 inline-block"></span>
+                $50000
+              </Typography>
+            </BarItem>
+            <BarItem row>
+              <MdMoreVert
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: -16,
+                  color: "white",
+                  opacity: 0.25,
+                }}
+                size={"2em"}
+              ></MdMoreVert>
+            </BarItem>
+          </Flexbar>
+        </Card>
         <Card color="#333" cardImage>
           <Flexbar padderY padderX>
             <BarItem col>
@@ -47,7 +72,7 @@ const IndexPage = () => (
                 style={{
                   position: "absolute",
                   top: 0,
-                  right: -18,
+                  right: -16,
                   color: "white",
                   opacity: 0.25,
                 }}
@@ -81,26 +106,61 @@ const IndexPage = () => (
       <ScrollView vertical marginY>
         <Card
           color="#333"
-          horizontal
+          horizontal={true}
           gutter
           cardImage
-          paddingX="4"
+          paddingX="2"
           paddingY="4"
           displayFlex
           fullWidth
-          // align="center"
-          height="28"
+          align="center"
+          height="24"
         >
-          <div>
-            <h2>hello</h2>
-          </div>
+          <CardBody>
+            <MdMoreVert
+              style={{
+                position: "absolute",
+                top: 15,
+                right: 0,
+                color: "white",
+                opacity: 0.25,
+              }}
+              size={"1.5em"}
+            ></MdMoreVert>
+            <Typography cardTitle>Hotel blue Lagoon</Typography>
+            <Flexbar>
+              <Typography spacing cardSubHeading>
+                $230
+              </Typography>
+              <Typography
+                opacity="opacity-25"
+                spacing
+                textDecor="line-through"
+                cardSubHeading
+              >
+                $230
+              </Typography>
+            </Flexbar>
+            <Flexbar spaceBetween padderY>
+              <BarItem align="center" row>
+                <MdLocationOn className="mr-1" color="#AAAAAA"></MdLocationOn>
+                <Typography opacity="1" cardBody>
+                  Chicago
+                </Typography>
+              </BarItem>
+              <BarItem align="center" spaceBetween row>
+                <FaRegHeart className="mr-1" color="#AAAAAA"></FaRegHeart>
+                <Typography opacity="1" cardBody>
+                  782
+                </Typography>
+                <MdModeComment color="#AAAAAA" className="mx-1"></MdModeComment>
+                <Typography opacity="1" cardBody>
+                  244
+                </Typography>
+              </BarItem>
+            </Flexbar>
+          </CardBody>
         </Card>
-        <Card color="#333" horizontal gutter fullWidth height="20"></Card>
-        <Card color="#333" horizontal gutter fullWidth height="20"></Card>
-        <Card color="#333" horizontal gutter fullWidth height="20"></Card>
-        <Card color="#333" horizontal gutter fullWidth height="20"></Card>
-        <Card color="#333" horizontal gutter fullWidth height="20"></Card>
-        <Card color="#333" horizontal gutter fullWidth height="20"></Card>
       </ScrollView>
       {/* <Flexbar row></Flexbar>  */}
     </section>

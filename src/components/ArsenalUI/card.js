@@ -4,10 +4,15 @@ import React from "react"
 
 const CardImage = ({ horizontal }) => {
   console.log(horizontal)
-  const imgWidth = horizontal ? "w-24 rounded-lg h-28" : " h-32 w-full"
+  const imgWidth = horizontal ? "w-24 rounded-lg h-20" : " h-32 w-full"
   return (
     <img className={`${imgWidth}`} src={require("../../images/img1.png")} />
   )
+}
+
+// used for horizontal cards
+export const CardBody = ({ children }) => {
+  return <div className="px-4 pt-2 flex-1 flex-col">{children}</div>
 }
 
 export default ({

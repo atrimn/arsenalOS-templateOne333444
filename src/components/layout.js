@@ -29,7 +29,7 @@ const Layout = ({ children }) => {
         <Header></Header>
         <main>{children}</main>
         <footer>
-          <h2 style={{ color: "white" }}>test</h2>
+          <h2 style={{}}>test</h2>
         </footer>
       </div>
     </>
