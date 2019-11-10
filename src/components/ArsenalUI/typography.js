@@ -3,8 +3,10 @@ import React from "react"
 export default ({
   heading,
   subheading,
+  cardHeading,
   cardTitle,
   cardSubHeading,
+  cardBody,
   body,
   button,
   children,
@@ -19,7 +21,7 @@ export default ({
     return (
       <h2
         style={{ ...textStyles }}
-        className="text-white tracking-wide leading-tight text-2xl"
+        className="text-white tracking-wide leading-tight text-3xl"
       >
         {children}
       </h2>
@@ -64,11 +66,31 @@ export default ({
       </h3>
     )
   }
+  if (cardHeading) {
+    return (
+      <h2
+        style={{ ...textStyles }}
+        className="text-white tracking-wider leading-tight text-2xl font-normal"
+      >
+        {children}
+      </h2>
+    )
+  }
   if (cardSubHeading) {
     return (
       <h3
         style={{ ...textStyles }}
         className={`text-white leading-snug  font-light opacity-50 text-xs`}
+      >
+        {children}
+      </h3>
+    )
+  }
+  if (cardBody) {
+    return (
+      <h3
+        style={{ ...textStyles }}
+        className={`text-white leading-relaxed tracking-widest opacity-75  font-light opacity-50 text-xs`}
       >
         {children}
       </h3>

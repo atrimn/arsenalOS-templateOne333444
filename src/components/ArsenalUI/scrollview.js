@@ -1,12 +1,22 @@
 import React from "react"
 
-export default ({ children, horizontal }) => {
+export default ({
+  children,
+  horizontal,
+  vertical,
+  marginY,
+  contentContainerStyle,
+}) => {
   // optimize to render 1000s of things
   const direction = horizontal ? "flex" : null
+  const marginVertical = marginY ? "my-6" : ""
+  const scrollDirection = vertical
+    ? " overflow-y-auto overflow-x-hidden"
+    : " overflow-x-auto overflow-y-hidden"
   return (
     <div
-      style={{ scrollSnapType: "x mandatory" }}
-      className={`scrollview ${direction} bg-transparent w-auto h-64  py-2 overflow-y-hidden overflow-x-auto scrolling-touch`}
+      style={{ scrollSnapType: "x mandatory", ...contentContainerStyle }}
+      className={`scrollview ${marginVertical} ${direction} bg-transparent w-auto h-64 ${scrollDirection}  py-2  scrolling-touch`}
     >
       {children}
     </div>
