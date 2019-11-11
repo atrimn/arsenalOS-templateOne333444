@@ -59,7 +59,7 @@ const IndexPage = () => {
     <Layout>
       <SEO title="Explore" />
       <section id="hero">
-        <div className="relative h-64 bg-gray-200">
+        <div className="relative h-auto bg-gray-200">
           <img
             className="absolute z-1 h-full w-full object-cover"
             src={heroBg}
@@ -85,9 +85,16 @@ const IndexPage = () => {
             ) : null}
             <Typography heroBody>Web Apps In Record Time</Typography>
             <Button
+              titleColor="rgb(114, 137, 218)"
               paddingY="4"
               paddingX="8"
-              buttonStyles={{ marginTop: 30, background: "#7289DA" }}
+              buttonStyles={{
+                marginTop: 40,
+                borderWidth: 2,
+                borderColor: "rgb(114, 137, 218)",
+                marginBottom: 80,
+                background: "transparent",
+              }}
               title="Sign Up For Beta"
             ></Button>
           </div>
@@ -133,7 +140,7 @@ const IndexPage = () => {
       <section id="places" className="px-4 h-auto">
         <Separator />
         <Flexbar marginY padderX padderY spaceBetween>
-          <Typography heading>Places to visit</Typography>
+          <Typography heading>Blog</Typography>
         </Flexbar>
         <Card
           bgImage={bgImage}
