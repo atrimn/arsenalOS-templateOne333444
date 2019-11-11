@@ -4,9 +4,11 @@ import React from "react"
 
 const CardImage = ({ horizontal }) => {
   console.log(horizontal)
-  const imgWidth = horizontal ? "w-24 rounded-lg h-20" : " h-32 w-full"
+  const imgWidth = horizontal
+    ? "w-24 rounded-lg h-20"
+    : " flex-1 rounded-lg w-full"
   return (
-    <img className={`${imgWidth}`} src={require("../../images/img1.png")} />
+    <img className={`${imgWidth}`} src={require("../../images/heroBg.svg")} />
   )
 }
 
@@ -90,7 +92,8 @@ export default ({
   return (
     <div
       style={{
-        minWidth: 300,
+        minWidth: 200,
+        maxWidth: maxWidth ? 200 : null,
         scrollSnapAlign: "start",
         background: color,
         ...gradientColor,

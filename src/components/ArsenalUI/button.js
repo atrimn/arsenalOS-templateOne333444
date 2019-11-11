@@ -8,9 +8,11 @@ export default ({
   titleColor,
   gradient,
   googleAuth,
+  buttonStyles,
   lg,
   icon,
   paddingY,
+  paddingX,
   fullWidth,
   titleStyle,
 }) => {
@@ -29,10 +31,14 @@ export default ({
 
   return (
     <button
-      style={{ ...color, color: titleColor }}
+      style={{
+        ...color,
+        color: titleColor,
+        ...buttonStyles,
+      }}
       className={`bg-gray-200 ${
         googleAuth ? "mt-20" : ""
-      } py-${paddingY} flex items-center outline-none  ${
+      } py-${paddingY} px-${paddingX} flex items-center outline-none  ${
         fullWidth ? "w-full  justify-center relative" : ""
       } rounded-full px-4 py-2`}
     >

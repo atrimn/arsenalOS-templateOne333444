@@ -7,6 +7,8 @@ export default ({
   cardTitle,
   opacity,
   cardSubHeading,
+  heroTitle,
+  heroBody,
   textDecor,
   cardBody,
   body,
@@ -98,6 +100,26 @@ export default ({
       <h3
         style={{ ...textStyles }}
         className={`text-white leading-relaxed tracking-widest font-light ${opacityVal} text-xs`}
+      >
+        {children}
+      </h3>
+    )
+  }
+  if (heroTitle) {
+    return (
+      <h3
+        style={{ ...textStyles }}
+        className={`leading-loose font-bold tracking-widest font-medium text-xl`}
+      >
+        {children}
+      </h3>
+    )
+  }
+  if (heroBody) {
+    return (
+      <h3
+        style={{ ...textStyles }}
+        className={`text-white  leading-relaxed tracking-widest font-medium text-base`}
       >
         {children}
       </h3>

@@ -26,14 +26,14 @@ const Layout = ({ children, location }) => {
   return (
     <>
       <div
-        style={{ background: location === "/login" ? "#030303" : "" }}
-        className={`bg-black h-auto`}
+        style={{ background: location === "/login" ? "#030303" : "#353535" }}
+        className={` h-auto`}
       >
         {location !== "/login" ? <Header></Header> : null}
         <main>{children}</main>
         {location === "/login" ? null : (
           <footer>
-            <h2 style={{}}>test</h2>
+            <h2 style={{ opacity: 0 }}>test</h2>
           </footer>
         )}
       </div>

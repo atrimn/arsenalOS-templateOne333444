@@ -1,32 +1,18 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
-
+import stealthIcon from "../images/stealthistIcon.png"
+import moreIcon from "../images/moreIcon.png"
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `rebeccapurple`,
+      background: `#2C2C2C`,
       // marginBottom: `1.45rem`,
     }}
   >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `3.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
+    <div className="flex justify-between items-center px-4 py-4">
+      <img className="h-4" src={stealthIcon} alt="page icon" />
+      <img className="h-3" src={moreIcon} alt="more icon" />
     </div>
   </header>
 )

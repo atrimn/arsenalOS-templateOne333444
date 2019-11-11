@@ -5,6 +5,7 @@ export default ({
   spaceBetween,
   padderX,
   padderY,
+  classes,
   marginY,
   marginTop,
 }) => {
@@ -16,7 +17,7 @@ export default ({
   // add rest of styles
   return (
     <div
-      className={`flex ${marginYTop}  ${marginVertical} ${spacing} ${paddingX} ${paddingY}`}
+      className={`flex ${marginYTop} ${classes}  ${marginVertical} ${spacing} ${paddingX} ${paddingY}`}
     >
       {children}
     </div>
