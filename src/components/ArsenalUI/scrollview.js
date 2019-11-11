@@ -5,6 +5,7 @@ export default ({
   horizontal,
   vertical,
   marginY,
+  classes,
   contentContainerStyle,
 }) => {
   // optimize to render 1000s of things
@@ -19,7 +20,7 @@ export default ({
         scrollSnapType: vertical ? "y mandatory" : "x mandatory",
         ...contentContainerStyle,
       }}
-      className={`scrollview ${marginVertical} ${direction} bg-transparent w-auto h-64 ${scrollDirection}  py-2  scrolling-touch`}
+      className={`scrollview ${marginVertical} ${direction} bg-transparent w-auto h-64 ${scrollDirection} ${classes}  py-2  scrolling-touch`}
     >
       {children}
     </div>

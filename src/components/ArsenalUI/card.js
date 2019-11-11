@@ -85,7 +85,7 @@ export default ({
   if (gradient) {
     gradientColor = {
       background:
-        "linear-gradient(25.02deg, rgba(210, 48, 120, 0.75) 19.6%, rgba(254, 97, 97, 0.75) 72.68%, rgba(255, 121, 85, 0.75) 92.75%), #F4327F",
+        "linear-gradient(25.02deg, rgb(114, 137, 218) 19.6%, rgb(114, 137, 218) 72.68%, rgb(114, 137, 218) 92.75%), #F4327F",
       boxShadow: "0px 80px 120px rgba(0, 0, 0, 0.05)",
     }
   }
