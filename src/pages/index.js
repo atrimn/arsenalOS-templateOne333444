@@ -1,7 +1,5 @@
 import React from "react"
 import { Link } from "gatsby"
-// import { animations } from "react-animation"
-import { AnimateOnChange } from "react-animation"
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
@@ -20,6 +18,8 @@ import { FaRegHeart } from "react-icons/fa"
 import bgImage from "../images/city.svg"
 import heroBg from "../images/heroBg.svg"
 import heroTitle from "../images/heroTitle.svg"
+import { AnimateOnChange } from "react-animation"
+
 //  flexbar at the bottom because border-sizing seems to not be working
 
 // const styleSlideIn = {
@@ -27,6 +27,7 @@ import heroTitle from "../images/heroTitle.svg"
 // }
 
 const IndexPage = () => {
+  const [windowLoaded, setWindowLoaded] = React.useState(false)
   const [timer, setTimer] = React.useState()
   const [wordIndex, setIndex] = React.useState(0)
 
@@ -50,6 +51,7 @@ const IndexPage = () => {
   React.useEffect(() => {
     const timerId = startTimer()
     setTimer(timerId)
+    setWindowLoaded(true)
     return () => timer()
   }, [])
 
@@ -70,15 +72,17 @@ const IndexPage = () => {
           <div className="relative w-full flex items-center flex-col pt-8 h-full z-50">
             <img className="w-24 h-10" src={heroTitle} alt="Stealthist" />
             <Typography heroBody>Starter Kits That Help You Ship</Typography>
-            <AnimateOnChange
-              animationIn="bounceIn"
-              animationOut="bounceOut"
-              durationOut={500}
-            >
-              <Typography textStyles={{ color: "#7289DA" }} heroTitle>
-                {word[wordIndex]}
-              </Typography>
-            </AnimateOnChange>
+            {windowLoaded ? (
+              <AnimateOnChange
+                animationIn="bounceIn"
+                animationOut="bounceOut"
+                durationOut={500}
+              >
+                <Typography textStyles={{ color: "#7289DA" }} heroTitle>
+                  {word[wordIndex]}
+                </Typography>
+              </AnimateOnChange>
+            ) : null}
             <Typography heroBody>Web Apps In Record Time</Typography>
             <Button
               paddingY="4"
