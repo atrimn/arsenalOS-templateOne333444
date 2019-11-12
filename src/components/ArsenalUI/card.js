@@ -2,14 +2,11 @@ import React from "react"
 
 //clean this up and document it
 
-const CardImage = ({ horizontal }) => {
-  console.log(horizontal)
+const CardImage = ({ horizontal, cardImage }) => {
   const imgWidth = horizontal
     ? "w-24 rounded-lg h-20"
-    : " flex-1 rounded-lg w-full"
-  return (
-    <img className={`${imgWidth}`} src={require("../../images/heroBg.svg")} />
-  )
+    : " h-40 object-cover rounded-lg w-full"
+  return <img className={`${imgWidth}`} src={cardImage} />
 }
 
 // used for horizontal cards
@@ -100,9 +97,12 @@ export default ({
       }}
       className={`relative ${paddingPY} ${alignDir} ${gutterRight} ${justifyDir} ${paddingPx} ${display} ${cardHeight} overflow-hidden bg-white ${maxWidth}    ${width} rounded-lg`}
     >
-      {cardImage ? <CardImage horizontal={horizontal} /> : null}
+      {cardImage ? (
+        <CardImage cardImage={cardImage} horizontal={horizontal} />
+      ) : null}
       {bgImage ? (
         <img
+          style={{ opacity: 0.1 }}
           className=" absolute object-cover object-top h-full w-full top-0 left-0 right-0  z-1"
           src={bgImage}
           alt="background image"

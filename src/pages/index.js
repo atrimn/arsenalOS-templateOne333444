@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import { getFirebase } from "../firebase"
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
@@ -30,6 +31,10 @@ const IndexPage = () => {
   const [windowLoaded, setWindowLoaded] = React.useState(false)
   const [timer, setTimer] = React.useState()
   const [wordIndex, setIndex] = React.useState(0)
+  // firebase
+  const [featured, setFeatured] = React.useState([])
+  const [places, setPlaces] = React.useState([])
+  const [firstPlace, setFirstPlace] = React.useState([])
 
   let index = 0
   let word = ["SEXY", "FAST", "RELIABLE"]
@@ -41,14 +46,40 @@ const IndexPage = () => {
         index = 0
         setIndex(0)
       } else {
-        console.log("here" + index)
+        // console.log("here" + index)
         index++
         setIndex(index)
       }
     }, 2000)
   }
 
+  // React.useEffect(() => {
+  //   if (places.length > 0) {
+  //     const firstPlace = places.slice(1)
+  //   } else {
+  //     console.log(places)
+  //   }
+  // }, [places])
+
   React.useEffect(() => {
+    // firebase
+    const lazyFirebase = import("firebase/app")
+    const lazyFirestore = import("firebase/firestore")
+
+    Promise.all([lazyFirebase]).then(([firebase]) => {
+      const firestore = getFirebase(firebase).firestore()
+      firestore.collection("featured").onSnapshot(snapshot => {
+        console.log(snapshot.docs.map(doc => doc.data()))
+        setFeatured(snapshot.docs.map(doc => doc.data()))
+      })
+
+      firestore.collection("places").onSnapshot(snapshot => {
+        console.log(snapshot.docs.map(doc => doc.data()))
+        setPlaces(snapshot.docs.map(doc => doc.data()))
+      })
+    })
+    // firebase end
+
     const timerId = startTimer()
     setTimer(timerId)
     setWindowLoaded(true)
@@ -111,30 +142,25 @@ const IndexPage = () => {
           ></Button>
         </Flexbar>
         <ScrollView marginY horizontal>
-          <Card gutter color="#353535" cardImage>
-            <Flexbar padderY padderX>
-              <BarItem col>
-                <Typography cardTitle>Hologram</Typography>
-                <Typography cardSubHeading>
-                  $68
-                  <span className="rounded h-2 w-2 ml-2 mr-2 bg-gray-200 inline-block"></span>
-                  by Hologram
-                </Typography>
-              </BarItem>
-            </Flexbar>
-          </Card>
-          <Card gutter color="#353535" cardImage>
-            <Flexbar padderY padderX>
-              <BarItem col>
-                <Typography cardTitle>Hologram</Typography>
-                <Typography cardSubHeading>
-                  $68
-                  <span className="rounded h-2 w-2 ml-2 mr-2 bg-gray-200 inline-block"></span>
-                  by Hologram
-                </Typography>
-              </BarItem>
-            </Flexbar>
-          </Card>
+          {featured.map(item => (
+            <Card
+              key={item.main_picture}
+              gutter
+              color="#353535"
+              cardImage={item.main_picture}
+            >
+              <Flexbar padderY padderX>
+                <BarItem col>
+                  <Typography cardTitle>{item.headline}</Typography>
+                  <Typography cardSubHeading>
+                    ${item.price}
+                    <span className="rounded h-2 w-2 ml-2 mr-2 bg-gray-200 inline-block"></span>
+                    by {item.city}
+                  </Typography>
+                </BarItem>
+              </Flexbar>
+            </Card>
+          ))}
         </ScrollView>
       </section>
       <section id="places" className="px-4 h-auto">
@@ -142,49 +168,25 @@ const IndexPage = () => {
         <Flexbar marginY padderX padderY spaceBetween>
           <Typography heading>Blog</Typography>
         </Flexbar>
-        <Card
-          bgImage={bgImage}
-          displayFlex
-          gradient
-          fullWidth
-          height="64"
-          paddingX="4"
-        >
-          <BarItem justify="center" grow>
-            <Typography cardHeading>Charco Azul</Typography>
-            <Typography cardBody>
-              Morbi urna elit, porta vitae convallis non, bibendum nec diam.
-            </Typography>
-          </BarItem>
-        </Card>
-        <ScrollView vertical marginY>
+        {places.length ? (
           <Card
-            color="#353535"
-            horizontal={true}
-            gutter
-            cardImage
-            paddingX="2"
-            paddingY="4"
+            bgImage={places[0].main_picture}
             displayFlex
+            gradient
             fullWidth
-            align="center"
-            height="24"
+            height="64"
+            paddingX="4"
           >
-            <CardBody>
-              <MdMoreVert
-                style={{
-                  position: "absolute",
-                  top: 15,
-                  right: 0,
-                  color: "white",
-                  opacity: 0.25,
-                }}
-                size={"1.5em"}
-              ></MdMoreVert>
-              <Typography cardTitle>Hotel blue Lagoon</Typography>
-              <Flexbar>
+            <BarItem justify="center" grow>
+              <Typography cardHeading>{places[0].headline}</Typography>
+              <Typography cardBody>{places[0].description}</Typography>
+              <Flexbar padderY>
+                <MdLocationOn className="mr-1" color="#AAAAAA"></MdLocationOn>
                 <Typography spacing cardSubHeading>
-                  $230
+                  {places[0].city}
+                </Typography>
+                <Typography spacing cardSubHeading>
+                  ${places[0].price}
                 </Typography>
                 <Typography
                   opacity="opacity-25"
@@ -192,32 +194,79 @@ const IndexPage = () => {
                   textDecor="line-through"
                   cardSubHeading
                 >
-                  $230
+                  ${places[0].price_old}
                 </Typography>
               </Flexbar>
-              <Flexbar spaceBetween padderY>
-                <BarItem align="center" row>
-                  <MdLocationOn className="mr-1" color="#AAAAAA"></MdLocationOn>
-                  <Typography opacity="1" cardBody>
-                    Chicago
-                  </Typography>
-                </BarItem>
-                <BarItem align="center" spaceBetween row>
-                  <FaRegHeart className="mr-1" color="#AAAAAA"></FaRegHeart>
-                  <Typography opacity="1" cardBody>
-                    782
-                  </Typography>
-                  <MdModeComment
-                    color="#AAAAAA"
-                    className="mx-1"
-                  ></MdModeComment>
-                  <Typography opacity="1" cardBody>
-                    244
-                  </Typography>
-                </BarItem>
-              </Flexbar>
-            </CardBody>
+            </BarItem>
           </Card>
+        ) : null}
+        <ScrollView vertical marginY>
+          {places.slice(1).map(item => (
+            <Card
+              key={item.main_picture}
+              color="#353535"
+              horizontal={true}
+              gutter
+              cardImage={item.main_picture}
+              paddingX="2"
+              paddingY="4"
+              displayFlex
+              fullWidth
+              align="center"
+              height="24"
+            >
+              <CardBody>
+                <MdMoreVert
+                  style={{
+                    position: "absolute",
+                    top: 15,
+                    right: 0,
+                    color: "white",
+                    opacity: 0.25,
+                  }}
+                  size={"1.5em"}
+                ></MdMoreVert>
+                <Typography cardTitle>{item.headline}</Typography>
+                <Flexbar>
+                  <Typography spacing cardSubHeading>
+                    ${item.price}
+                  </Typography>
+                  <Typography
+                    opacity="opacity-25"
+                    spacing
+                    textDecor="line-through"
+                    cardSubHeading
+                  >
+                    ${item.price_old}
+                  </Typography>
+                </Flexbar>
+                <Flexbar spaceBetween padderY>
+                  <BarItem align="center" row>
+                    <MdLocationOn
+                      className="mr-1"
+                      color="#AAAAAA"
+                    ></MdLocationOn>
+                    <Typography opacity="1" cardBody>
+                      {item.city}
+                    </Typography>
+                  </BarItem>
+                  <BarItem align="center" spaceBetween row>
+                    <FaRegHeart className="mr-1" color="#AAAAAA"></FaRegHeart>
+                    <Typography opacity="1" cardBody>
+                      782
+                    </Typography>
+                    <MdModeComment
+                      color="#AAAAAA"
+                      className="mx-1"
+                    ></MdModeComment>
+                    <Typography opacity="1" cardBody>
+                      244
+                    </Typography>
+                  </BarItem>
+                </Flexbar>
+              </CardBody>
+            </Card>
+          ))}
         </ScrollView>
         {/* <Flexbar row></Flexbar>  */}
       </section>
