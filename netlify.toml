@@ -1,2 +1,5 @@
+[build]
+  command = 'gatsby build'
+  publish = 'publish/'
 [template.environment]
   FIREBASE_API_KEY = "Firebase API key"
