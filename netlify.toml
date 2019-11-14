@@ -1,2 +1,2 @@
 [template.environment]
-  FIREBASE_API_KEY = "title for the page"
+  FIREBASE_API_KEY = "Firebase API key"
