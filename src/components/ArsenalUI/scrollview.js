@@ -20,7 +20,7 @@ export default ({
         scrollSnapType: vertical ? "y mandatory" : "x mandatory",
         ...contentContainerStyle,
       }}
-      className={`scrollview ${marginVertical} ${direction} bg-transparent w-auto h-64 ${scrollDirection} ${classes}  py-2  scrolling-touch`}
+      className={`scrollview ${marginVertical} ${direction} bg-transparent w-auto h-auto ${scrollDirection} ${classes}  py-2  scrolling-touch`}
     >
       {children}
     </div>

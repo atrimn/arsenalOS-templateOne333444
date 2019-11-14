@@ -76,7 +76,7 @@ export default ({
     return (
       <h2
         style={{ ...textStyles }}
-        className="text-white tracking-wider leading-tight text-2xl font-normal"
+        className="text-white  tracking-wider leading-tight text-2xl font-normal"
       >
         {children}
       </h2>
@@ -88,7 +88,7 @@ export default ({
     return (
       <h3
         style={{ ...textStyles }}
-        className={`text-white ${textDecor} ${spacingVal} ${opacityVal} leading-snug pr-2  font-light  text-xs`}
+        className={`text-white ${textDecor} truncate ${spacingVal} ${opacityVal} leading-snug pr-2  font-light  text-xs`}
       >
         {children}
       </h3>

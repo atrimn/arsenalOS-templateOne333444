@@ -20,6 +20,7 @@ import bgImage from "../images/city.svg"
 import heroBg from "../images/heroBg.svg"
 import heroTitle from "../images/heroTitle.svg"
 import { AnimateOnChange } from "react-animation"
+import axios from "axios"
 
 //  flexbar at the bottom because border-sizing seems to not be working
 
@@ -149,7 +150,7 @@ const IndexPage = () => {
               color="#353535"
               cardImage={item.main_picture}
             >
-              <Flexbar padderY padderX>
+              <Flexbar padderY padderX col>
                 <BarItem col>
                   <Typography cardTitle>{item.headline}</Typography>
                   <Typography cardSubHeading>
@@ -157,6 +158,16 @@ const IndexPage = () => {
                     <span className="rounded h-2 w-2 ml-2 mr-2 bg-gray-200 inline-block"></span>
                     by {item.city}
                   </Typography>
+                </BarItem>
+              </Flexbar>
+              <Flexbar>
+                <BarItem>
+                  <a href="https://app.netlify.com/start/deploy?repository=https://github.com/atrimn/arsenalOS-templateOne">
+                    <img
+                      src="https://www.netlify.com/img/deploy/button.svg"
+                      alt="Deploy to Netlify"
+                    />
+                  </a>
                 </BarItem>
               </Flexbar>
             </Card>
